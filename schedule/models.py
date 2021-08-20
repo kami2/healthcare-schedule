@@ -1,24 +1,25 @@
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from datetime import datetime
 from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 
 class Doctor(models.Model):
-    phd = models.CharField(max_length=55)
-    first_name = models.CharField(max_length=25)
-    last_name = models.CharField(max_length=40)
+    phd = models.CharField("Tytuł naukowy", max_length=55)
+    first_name = models.CharField("Imię", max_length=25)
+    last_name = models.CharField("Nazwisko", max_length=40)
 
     def __str__(self):
         return str(self.phd) + " " + str(self.first_name) + " " + str(self.last_name)
 
 
 class Office(models.Model):
-    office = models.IntegerField()
+    office = models.IntegerField("Gabinet")
 
     def __str__(self):
-        return "Office number: " + str(self.office)
+        return "Numer gabinetu: " + str(self.office)
 
 
 class Shift(models.Model):
@@ -33,10 +34,12 @@ class Shift(models.Model):
         SAT = 'SATURDAY', _('Sobota')
         SUN = 'SUNDAY', _('Niedziela')
 
-    day_of_the_week = models.CharField(max_length=15, choices=DayOfTheWeek.choices)
+    day_of_the_week = models.CharField("Dzień tygodnia", max_length=15, choices=DayOfTheWeek.choices)
 
     def is_upperclass(self):
         return self.day_of_the_week
+
+
 
     office = models.ForeignKey(Office, on_delete=models.CASCADE)
     start_time = models.TimeField(auto_now=False, auto_now_add=False)
