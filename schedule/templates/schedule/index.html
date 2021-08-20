@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>:: Remedis ::</title>
+	<link href="{% static 'schedule/css/css.css' %}" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{% static 'schedule/js/main.js' %}"></script>
+</head>
+
+<body>
+	<div id="top">
+		<div id="logo"><img src="{% static 'schedule/gfx/logo.png' %}" width="400" height="100" alt="logo" /></div>
+		<div id="topcontent">
+			<div id="dzien_godzina">
+				{% if weekday == 5 %}
+				Piątek
+				{% endif %}
+				{{ day }}
+			</div>
+			<div id="data">{{ date }}</div>
+		</div>
+	</div>
+	<!-- CONTENT -->
+	<div id="content">
+		<div id="lekarze">
+			<div id="wrapper">
+
+			<div class="grupa">
+			<!-- start loop -->
+			{% for shift in shift %}
+			<div class="lekarz">
+				<table class="tabelka">
+				<tr>
+					<td class="nazwa">{{ shift.doctor.phd }} {{ shift.doctor.first_name }} {{ shift.doctor.last_name }}</td>
+					<td class="godziny">{{ shift.start_time }}-{{ shift.finish_time }}</td>
+					<td class="gabinet">gabinet {{ shift.office.office }}</td>
+				</tr>
+				</table>
+			</div>
+			{% if forloop.counter|divisibleby:3 %}
+			</div>
+
+			<div class="grupa">
+			{% endif %}
+			{% endfor %}
+			<!-- end loop -->
+			</div>
+		</div>
+	</div>
+	<div id="footer"><marquee scrollamount="5" scrolldelay="3">NZOZ REMEDIS Wrocław, Mińska 5 tel (71)780-30-50  ||</marquee>
+	</div>
+</body>
+</html>

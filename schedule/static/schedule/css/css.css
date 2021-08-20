@@ -1,0 +1,196 @@
+html {
+	overflow:hidden;
+}
+
+body,td,th {
+	font-family: "Droid Sans Fallback", sans-serif;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+
+duze {
+	font-size:68px;
+}
+
+srednie {
+	font-size: 38px;
+	font-weight: bold;
+}
+nieobecnosc {
+t
+	font-size: 48px;
+	#color: red;
+	color: white;
+	#text-decoration: line-through;
+}
+urlop {
+	font-size: 48px;
+	#color: red;
+	color: white;
+}
+
+div#top {
+	height: 150px;
+	width: 1920px;
+	margin: 0px 0px 0px 0px;
+	left: 0px;
+	top: 0px;
+	z-index: 10;
+	position: absolute;
+}
+
+div#logo {
+	width: 600px;
+	height: 150px;
+	left: 0px;
+	top: 0px;
+}
+
+div#topcontent {
+	top: 0px;
+	right: 0px;
+	width: 1320px;
+	height: 250px;
+	padding-left: 50px;
+	padding-top: 40px;
+	padding-right: 20px;
+	position:absolute;
+	text-align:left;
+	vertical-align: baseline;
+	color:#018ACD
+}
+div#dzien_godzina {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 754px;
+	height: 150px;
+	padding-top: 40px;
+	text-align: center;
+	font-size: 68px;
+	
+}
+
+div#data {
+	position:absolute;
+	top: 0px;
+	left: 670px;
+	width: 566px;
+	height: 150px;
+	padding-top: 20px;
+	padding-right: 20px;
+	text-align: right;
+	font-size: 58px;
+}
+
+div#content {
+	top: 150px;
+	left: 0px;
+	height: 855px;
+	width: 1920px;
+	margin: 0px 0px 0px 0px;
+	overflow: hidden;
+}
+
+div#lekarze {
+	top: 150px;
+	left: 20px;
+	height: 855px;
+	width: 1920px;
+	margin-left: 20px;
+	padding-left: 0px;
+	overflow: hidden;
+	z-index: 0;
+	position: absolute;
+}
+
+div#wrapper {
+	position: absolute;
+}
+table.tabelka {
+	width: 1810px;
+	height:150px;
+	border: none;
+	top: -72px;
+	left: 0px;
+	position: relative;
+	margin-top: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	padding-top: 0px;
+	position: relative;
+}
+td.nazwa {
+	position: absolute;
+	padding-left: 20px;
+	width: 1000px;
+	text-align:left;
+}
+td.godziny {
+	position: absolute;
+	left: 1050px;
+	width: 200px;
+	text-align: right;
+}
+td.gabinet {
+	position: absolute;
+	left: 1200px;
+	width: 350px;
+	text-align: right;
+	padding-right: 20px;
+}
+
+div.lekarz {
+	margin-left: 55px;
+	margin-top: 69px;
+	background-image: url(../gfx/belka.png);
+	background-repeat: no-repeat;
+	padding-left: 12px;
+	padding-top: 0px;
+	font-size: 48px;
+	width: 1750px;
+	height: 150px;
+	color: white;
+	white-space: pre;
+}
+
+
+div#wrapper > div {
+	top: 1000px;
+	left: 20px;
+	height: 855px;
+	width: 1920px;
+	z-index:0;
+}
+
+div.grupa {
+	height: 855px;
+	width: 1920px;
+}
+
+
+div#footer {
+	bottom: 0px;
+	left: 0px;
+	width: 1920px;
+	height: 75px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	color: white;
+	padding-top: 15px;
+	padding-right: 0px;
+	padding-left: 0px;
+	font-size: 36px;
+	font-family: Droid Sans Fallback;
+	background-image: url(../gfx/footer.png);
+	background-repeat:repeat-x;
+	z-index: 9;
+	position: absolute;
+}
