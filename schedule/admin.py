@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Doctor, Shift, Office, Absence
+from django.utils.translation import ugettext_lazy as _
 
 # Register your models here.
 
