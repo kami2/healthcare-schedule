@@ -1,7 +1,4 @@
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-from datetime import datetime
 from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
@@ -25,21 +22,19 @@ class Office(models.Model):
 class Shift(models.Model):
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
 
-    class DayOfTheWeek(models.TextChoices):
-        MON = 'MONDAY', _('Poniedziałek')
-        TUE = 'TUESDAY', _('Wtorek')
-        WED = 'WEDNESDAY', _('Środa')
-        THU = 'THURSDAY', _('Czwartek')
-        FRI = 'FRIDAY', _('Piątek')
-        SAT = 'SATURDAY', _('Sobota')
-        SUN = 'SUNDAY', _('Niedziela')
+    class DayOfTheWeek(models.IntegerChoices):
+        MON = 1, _('Poniedziałek')
+        TUE = 2, _('Wtorek')
+        WED = 3, _('Środa')
+        THU = 4, _('Czwartek')
+        FRI = 5, _('Piątek')
+        SAT = 6, _('Sobota')
+        SUN = 7, _('Niedziela')
 
-    day_of_the_week = models.CharField("Dzień tygodnia", max_length=15, choices=DayOfTheWeek.choices)
+    day_of_the_week = models.IntegerField("Dzień tygodnia", choices=DayOfTheWeek.choices)
 
     def is_upperclass(self):
         return self.day_of_the_week
-
-
 
     office = models.ForeignKey(Office, on_delete=models.CASCADE)
     start_time = models.TimeField(auto_now=False, auto_now_add=False)
