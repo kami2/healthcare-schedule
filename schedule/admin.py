@@ -10,7 +10,7 @@ class AbsenceInline(admin.TabularInline):
 
 @admin.register(Absence)
 class AbsenceAdmin(admin.ModelAdmin):
-    list_display = ('doctor', 'holiday')
+    list_display = ('doctor', 'start_holiday', 'finish_holiday', 'holiday', 'absence', 'archived')
 
 
 @admin.register(Doctor)
@@ -22,6 +22,7 @@ class DoctorAdmin(admin.ModelAdmin):
 @admin.register(Shift)
 class RotaAdmin(admin.ModelAdmin):
     list_display = ('doctor', 'day_of_the_week', 'office', 'start_time', 'finish_time')
+    list_filter = ('day_of_the_week', 'office')
 
 
 

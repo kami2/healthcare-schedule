@@ -24,7 +24,7 @@ class Office(models.Model):
         verbose_name_plural = _("Gabinety")
 
     def __str__(self):
-        return "Numer gabinetu: " + str(self.office)
+        return "Gabinet numer " + str(self.office)
 
 
 class Shift(models.Model):
