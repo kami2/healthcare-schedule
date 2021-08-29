@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
+from django.core.exceptions import ValidationError
+from django.utils.safestring import mark_safe
+from django.urls import reverse
 # Create your models here.
 
 class Doctor(models.Model):
@@ -17,11 +19,17 @@ class Doctor(models.Model):
 
 
 class Office(models.Model):
-    office = models.IntegerField("Gabinet")
+    office = models.IntegerField("Gabinet", unique=True)
 
     class Meta:
         verbose_name = _("Gabinet")
         verbose_name_plural = _("Gabinety")
+
+    def validate_unique(self, exclude=None):
+        try:
+            super(Office, self).validate_unique()
+        except ValidationError as e:
+            raise ValidationError('Istnieje już gabinet o takim numerze')
 
     def __str__(self):
         return "Gabinet numer " + str(self.office)
@@ -49,11 +57,32 @@ class Shift(models.Model):
     finish_time = models.TimeField(verbose_name="Czas zakończenia", auto_now=False, auto_now_add=False)
 
     class Meta:
+        unique_together = [("doctor", "day_of_the_week")]
         verbose_name = _("Zmiana")
         verbose_name_plural = _("Zmiany")
 
+    def get_admin_url(self):
+        return reverse("admin:%s_%s_change" %
+                                    (self._meta.app_label, self._meta.model_name), args=(self.pk,))
+
+    def get_hyperlink(self):
+        doctor_in_day_of_the_week = Shift.objects.filter(day_of_the_week=self.day_of_the_week).filter(
+            doctor=self.doctor).get()
+        return  "<a href='%s'>TUTAJ</a>" % doctor_in_day_of_the_week.get_admin_url()
+
+
+    def validate_unique(self, exclude=None):
+        try:
+            super(Shift, self).validate_unique()
+        except ValidationError as e:
+            raise ValidationError(
+                (_(mark_safe(str(self.doctor) + " jest już zapisany na ten dzień tygodnia. Aby przejść do wpisu kliknij " + self.get_hyperlink())))
+            )
+
+
     def __str__(self):
-        return str(self.day_of_the_week)
+        return "Wpis numer: " + str(self.id)
+
 
 
 

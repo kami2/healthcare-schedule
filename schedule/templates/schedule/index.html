@@ -30,8 +30,15 @@
 				<table class="tabelka">
 				<tr>
 					<td class="nazwa">{{ shift.doctor.phd }} {{ shift.doctor.first_name }} {{ shift.doctor.last_name }}</td>
+					{% if shift.doctor.absence.holiday %}
+					<td class="gabinet"><urlop>URLOP</urlop></td>
+					{% elif shift.doctor.absence.absence %}
+					<td class="godziny"><strike>{{ shift.start_time }}-{{ shift.finish_time }}</strike></td>
+					<td class="gabinet">NB</td>
+					{% else %}
 					<td class="godziny">{{ shift.start_time }}-{{ shift.finish_time }}</td>
 					<td class="gabinet">gabinet {{ shift.office.office }}</td>
+					{% endif %}
 				</tr>
 				</table>
 			</div>

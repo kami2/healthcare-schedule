@@ -1,11 +1,23 @@
 from django.contrib import admin
 from .models import Doctor, Shift, Office, Absence
-from django.utils.translation import ugettext_lazy as _
-
+from django import forms
+from django.utils.translation import gettext_lazy as _
+from django.core.exceptions import ValidationError
 # Register your models here.
 
 class AbsenceInline(admin.TabularInline):
     model = Absence
+
+
+
+@admin.register(Shift)
+class ShiftAdmin(admin.ModelAdmin):
+    list_display = ('doctor', 'day_of_the_week', 'office', 'start_time', 'finish_time')
+    list_filter = ('day_of_the_week', 'office')
+
+class ShiftAdminForm(forms.ModelForm):
+    model = Shift
+
 
 
 @admin.register(Absence)
@@ -19,10 +31,7 @@ class DoctorAdmin(admin.ModelAdmin):
     inlines =  [AbsenceInline]
 
 
-@admin.register(Shift)
-class RotaAdmin(admin.ModelAdmin):
-    list_display = ('doctor', 'day_of_the_week', 'office', 'start_time', 'finish_time')
-    list_filter = ('day_of_the_week', 'office')
+
 
 
 
