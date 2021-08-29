@@ -6,14 +6,16 @@
 	<title>:: Remedis ::</title>
 	<link href="{% static 'schedule/css/css.css' %}" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="{% static 'schedule/js/main.js' %}"></script>
+	<script type="text/javascript" src="{% static 'schedule/js/datetime.js' %}"></script>
 </head>
 
-<body>
+<body onload="startTime()">
 	<div id="top">
 		<div id="logo"><img src="{% static 'schedule/gfx/logo.png' %}" width="400" height="100" alt="logo" /></div>
 		<div id="topcontent">
 			<div id="dzien_godzina">
 				{{ weekday.get_day_of_the_week_display }}
+				<div id="zegarek"></div>
 			</div>
 			<div id="data">{{ date }}</div>
 		</div>

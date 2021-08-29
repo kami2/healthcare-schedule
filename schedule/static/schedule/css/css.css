@@ -64,6 +64,7 @@ div#topcontent {
 	color:#018ACD
 }
 div#dzien_godzina {
+    display: inline-block;
 	position: absolute;
 	left: 0px;
 	top: 0px;
@@ -73,6 +74,10 @@ div#dzien_godzina {
 	text-align: center;
 	font-size: 68px;
 	
+}
+
+div#zegarek {
+    display: inline-block;
 }
 
 div#data {
